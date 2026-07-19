@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Vasu Yadav, ServiceNow Developer at Accenture. ITSM workflows, Flow Designer, Service Portal, ATF.">
+<meta name="theme-color" content="#F3F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F0C" media="(prefers-color-scheme: dark)">
+<title>Vasu Yadav — ServiceNow Developer</title>
+<style>
+  :root{
+    --bg:#F7F5F0;
+    --bg-alt:#ECE8DF;
+    --card:#FDFCFA;
+    --ink:#101418;
+    --ink-soft:#6A7078;
+    --line:#DDD8CC;
+    --accent:#0B7A47;
+    --accent-deep:#075232;
+    --accent-soft:#E4F3E7;
+    --muted-bg:#EBE8E1;
+    --muted-ink:#686E75;
+    --radius:14px;
+    --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --bg:#0C110F;
+    --bg-alt:#141A17;
+    --card:#171E1B;
+    --ink:#F3F0EA;
+    --ink-soft:#9BA69D;
+    --line:#232A26;
+    --accent:#4EE39A;
+    --accent-deep:#7FF0B5;
+    --accent-soft:#17281E;
+    --muted-bg:#1B221E;
+    --muted-ink:#94A096;
+    color-scheme:dark;
+  }
+  html{scroll-behavior:smooth;}
+  body{transition:background .25s ease, color .2s ease;position:relative;}
+  body{
+    background:
+      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(11,122,71,0.06), transparent 60%),
+      radial-gradient(ellipse 700px 460px at 90% 6%, rgba(191,140,40,0.07), transparent 55%),
+      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(11,122,71,0.04), transparent 60%),
+      var(--bg);
+  }
+  html[data-theme="dark"] body{
+    background:
+      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(78,227,154,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 92% 10%, rgba(78,227,154,0.06), transparent 55%),
+      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(78,227,154,0.05), transparent 60%),
+      var(--bg);
+  }
+  .noise{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    opacity:0.35;mix-blend-mode:multiply;
+  }
+  html[data-theme="dark"] .noise{opacity:0.28;mix-blend-mode:overlay;}
+  header, main, footer{position:relative;z-index:1;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-sans);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 16px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:840px;margin:0 auto;padding:12px 16px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+  }
+  .brand{
+    font-family:var(--font-serif);
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:-0.01em;
+  }
+  .brand span{color:var(--accent);}
+  .header-cta{
+    font-family:var(--font-mono);
+    font-size:12px;
+    padding:8px 14px;
+    border:1px solid var(--ink);
+    border-radius:8px;
+    transition:background .15s ease, color .15s ease, transform .15s ease;
+    white-space:nowrap;
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    min-height:44px;min-width:44px;
+  }
+  .header-cta:hover{background:var(--ink);color:var(--bg);}
+  .header-cta:active{transform:scale(0.98);}
+  .theme-toggle{
+    width:44px;height:44px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink);
+    background:transparent;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+    flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .theme-toggle:hover{border-color:var(--ink);background:var(--bg-alt);}
+  .theme-toggle svg{width:18px;height:18px;}
+
+  /* ---------- status pill ---------- */
+  .pill{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.03em;
+    padding:5px 10px 5px 8px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    line-height:1.4;
+  }
+  .pill.active{background:var(--accent-soft);color:var(--accent-deep);}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:40px 0 32px;}
+  .hero h1{
+    font-family:var(--font-serif);
+    font-weight:600;
+    font-size:38px;
+    line-height:1.08;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+  }
+  .hero .role{
+    font-weight:600;
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .hero p.lede{
+    font-size:15px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-top:16px;
+  }
+  .kw{color:var(--accent-deep);font-weight:600;}
+  .field-row{
+    display:flex;flex-wrap:wrap;gap:16px 24px;
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .field{display:flex;flex-direction:column;gap:3px;}
+  .field-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .field-value{font-size:13.5px;font-weight:500;}
+  .hero{padding-bottom:36px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+  .btn{
+    font-family:var(--font-sans);
+    font-weight:500;
+    font-size:13px;
+    padding:10px 18px;
+    border-radius:8px;
+    display:inline-flex;align-items:center;gap:6px;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    min-height:44px;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{background:var(--ink);color:var(--bg);border:1px solid var(--ink);}
+  .btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* ---------- section shell ---------- */
+  section{padding:40px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:20px;}
+  .section-head h2{
+    font-family:var(--font-serif);
+    font-weight:600;
+    font-size:21px;
+    letter-spacing:-0.01em;
+    margin-top:6px;
+  }
+
+  /* ---------- record card ---------- */
+  .record{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 16px;
+  }
+  .record-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:10px;
+    padding-bottom:16px;margin-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .record-num{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);}
+  .record-title{font-family:var(--font-serif);font-weight:600;font-size:17px;margin-top:4px;}
+  .record-org{color:var(--accent-deep);font-weight:500;font-size:13px;margin-top:3px;}
+  .record-fields{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px 20px;
+    margin-bottom:16px;
+  }
+  .record-fields .field-value{font-size:13px;}
+  .notes-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
+  .record ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .record li{font-size:13.5px;line-height:1.55;padding-left:16px;position:relative;}
+  .record li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:2px;background:var(--accent);border-radius:1px;}
+
+  /* ---------- skills ---------- */
+  .skill-group{margin-bottom:20px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group h3{
+    font-family:var(--font-mono);
+    font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;
+    color:var(--ink-soft);margin-bottom:10px;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{
+    font-size:12px;padding:7px 12px;border-radius:7px;
+    background:var(--bg-alt);border:1px solid var(--line);color:var(--ink);
+    line-height:1.4;min-height:44px;display:inline-flex;align-items:center;
+    transition:border-color .15s ease;
+  }
+  .chip:hover{border-color:var(--accent);}
+  .skill-group.dev .chip{background:var(--accent-soft);border-color:transparent;color:var(--accent-deep);}
+
+  /* ---------- certifications ---------- */
+  .cert-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+  .cert-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 14px;transition:border-color .15s ease;
+  }
+  .cert-card:hover{border-color:var(--accent);}
+  .cert-code{font-family:var(--font-serif);font-weight:700;font-size:23px;color:var(--accent-deep);}
+  .cert-name{font-size:12px;color:var(--ink-soft);margin-top:5px;line-height:1.4;}
+
+  /* ---------- projects: resolved-record list ---------- */
+  .case-list{display:flex;flex-direction:column;}
+  .case-row{
+    padding:18px 2px;
+    border-top:1px solid var(--line);
+  }
+  .case-list .case-row:last-child{border-bottom:1px solid var(--line);}
+  .case-title{display:block;font-family:var(--font-serif);font-weight:600;font-size:16px;}
+  .case-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:8px;}
+  .case-tags{font-family:var(--font-mono);font-size:10px;color:var(--accent-deep);margin-top:8px;}
+
+  /* ---------- footer ---------- */
+  footer{padding:40px 0 48px;}
+  footer h2{
+    font-family:var(--font-serif);font-weight:600;font-size:25px;
+    letter-spacing:-0.01em;max-width:420px;line-height:1.15;margin-top:8px;
+  }
+  footer h2 em{font-style:italic;color:var(--accent-deep);}
+  .connect-row{
+    margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
+    font-family:var(--font-mono);font-size:13px;
+  }
+  .connect-row a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .15s ease, border-color .15s ease;}
+  .connect-row a:hover{color:var(--accent-deep);border-color:var(--accent-deep);}
+  .connect-row span{color:var(--ink-soft);}
+  .foot-bottom{
+    margin-top:36px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;font-family:var(--font-mono);
+    font-size:10px;color:var(--ink-soft);flex-wrap:wrap;gap:6px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media(min-width:640px){
+    .wrap{padding:0 20px;}
+    .header-inner{padding:14px 20px;}
+    .brand{font-size:20px;}
+    .hero{padding:56px 0 40px;}
+    .hero h1{font-size:50px;}
+    .hero p.lede{font-size:16px;}
+    section{padding:48px 0;}
+    .section-head h2{font-size:25px;}
+    .record{padding:24px 20px;}
+    .record-title{font-size:18px;}
+    .cert-grid{grid-template-columns:repeat(3,1fr);gap:12px;}
+    .case-title{font-size:18px;}
+    footer{padding:48px 0 56px;}
+    footer h2{font-size:32px;}
+  }
+  @media(min-width:860px){ .hero h1{font-size:58px;} }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+  }
+  @media print{
+    html[data-theme="dark"]{color-scheme:light;}
+    html[data-theme="dark"] body{background:var(--bg) !important;}
+    header{position:static;backdrop-filter:none;-webkit-backdrop-filter:none;}
+    .theme-toggle{display:none !important;}
+  }
+</style>
+</head>
+<body>
+<svg class="noise" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#grain)"/>
+</svg>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">Vasu Yadav <span>·</span> <span>SNOW</span></div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle night mode" title="Toggle night mode" type="button">
+        <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a class="header-cta" href="mailto:waasukv@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;padding-top:32px;">
+    <h1>Vasu Yadav</h1>
+    <p class="role">ServiceNow Developer</p>
+    <p class="lede">Building enterprise <span class="kw">ITSM</span> solutions with <span class="kw">Flow Designer</span>, <span class="kw">Business Rules</span>, <span class="kw">Employee Center</span>, <span class="kw">Service Portal</span>, and <span class="kw">ATF</span> — 2.5+ years on the platform.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/kvvasuyadav/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/kvvasu" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn btn-ghost" href="mailto:waasukv@gmail.com">Email</a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <span class="eyebrow">Experience</span>
+      <h2>Where I've built</h2>
+    </div>
+    <div class="record">
+      <div class="record-top">
+        <div>
+          <div class="record-num">INC0010045</div>
+          <div class="record-title">Application Development Associate</div>
+          <div class="record-org">Accenture</div>
+        </div>
+        <span class="pill active"><span class="dot"></span>ACTIVE</span>
+      </div>
+      <div class="record-fields">
+        <div class="field"><span class="field-label">Opened</span><span class="field-value">Jan 2024</span></div>
+        <div class="field"><span class="field-label">Assigned to</span><span class="field-value">ITSM Platform Team</span></div>
+      </div>
+      <div class="notes-label">Work notes</div>
+      <ul>
+        <li>Developed and customized enterprise ServiceNow applications.</li>
+        <li>Automated ITSM workflows using <span class="kw">Flow Designer</span>.</li>
+        <li>Built <span class="kw">Business Rules</span>, <span class="kw">Client Scripts</span>, UI Policies, and Script Includes.</li>
+        <li>Developed <span class="kw">Service Catalog</span> and <span class="kw">Employee Center</span> solutions.</li>
+        <li>Created <span class="kw">Automated Test Framework (ATF)</span> suites.</li>
+        <li>Supported platform upgrades and production releases.</li>
+        <li>Worked in Agile teams following ITIL best practices.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <span class="eyebrow">Skills</span>
+      <h2>Core skills</h2>
+    </div>
+    <div class="skill-group dev">
+      <h3>ServiceNow Platform</h3>
+      <div class="chip-row">
+        <span class="chip">ServiceNow</span><span class="chip">ITSM</span><span class="chip">Flow Designer</span>
+        <span class="chip">Business Rules</span><span class="chip">Client Scripts</span><span class="chip">Script Includes</span>
+        <span class="chip">UI Policies</span><span class="chip">Service Catalog</span><span class="chip">Employee Center</span>
+        <span class="chip">Service Portal</span><span class="chip">UI Builder</span><span class="chip">ATF</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Engineering</h3>
+      <div class="chip-row">
+        <span class="chip">JavaScript</span><span class="chip">REST APIs</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Git</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Ways of Working</h3>
+      <div class="chip-row"><span class="chip">Agile</span><span class="chip">ITIL</span></div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head">
+      <span class="eyebrow">Certifications</span>
+      <h2>Validated expertise</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-code">CSA</div><div class="cert-name">ServiceNow Certified System Administrator</div></div>
+      <div class="cert-card"><div class="cert-code">CAD</div><div class="cert-name">ServiceNow Certified Application Developer</div></div>
+      <div class="cert-card"><div class="cert-code">CIS</div><div class="cert-name">ServiceNow Certified Implementation Specialist — ITSM</div></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <span class="eyebrow">Projects</span>
+      <h2>Selected work</h2>
+    </div>
+    <div class="case-list">
+      <div class="case-row">
+        <span class="case-title">Employee Onboarding Portal</span>
+        <p class="case-desc">Automated onboarding requests, approvals, task generation, and notifications.</p>
+        <p class="case-tags">Employee Center · Flow Designer · Service Catalog</p>
+      </div>
+      <div class="case-row">
+        <span class="case-title">Incident Automation</span>
+        <p class="case-desc">Automated assignment, SLA handling, and incident lifecycle management.</p>
+        <p class="case-tags">Business Rules · Flow Designer · Notifications</p>
+      </div>
+      <div class="case-row">
+        <span class="case-title">Leave Management Application</span>
+        <p class="case-desc">Built using custom tables, Client Scripts, Business Rules, and approval workflows.</p>
+        <p class="case-tags">Custom Application</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <span class="eyebrow">Contact</span>
+    <h2>Looking for <em>ServiceNow Developers?</em></h2>
+    <div class="connect-row">
+      <a href="mailto:waasukv@gmail.com">waasukv@gmail.com</a>
+      <span>·</span>
+      <a href="https://www.linkedin.com/in/kvvasuyadav/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span>·</span>
+      <a href="https://github.com/kvvasu" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="foot-bottom">
+      <span>Vasu Yadav — Hyderabad, India</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var sun = document.getElementById('iconSun');
+    var moon = document.getElementById('iconMoon');
+    if(!btn || !sun || !moon) return;
+
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch(e){}
+
+    function setDark(isDark){
+      if(isDark){
+        root.setAttribute('data-theme','dark');
+        sun.style.display='none'; moon.style.display='block';
+      } else {
+        root.removeAttribute('data-theme');
+        sun.style.display='block'; moon.style.display='none';
+      }
+    }
+
+    if(saved === 'dark' || saved === 'light'){
+      setDark(saved === 'dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setDark(true);
+    }
+
+    btn.addEventListener('click', function(){
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      setDark(!isDark);
+      try { localStorage.setItem('theme', !isDark ? 'dark' : 'light'); } catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
