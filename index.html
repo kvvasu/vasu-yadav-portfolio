@@ -48,7 +48,7 @@
   <link rel="preload" href="./fonts/caveat-700.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Preload the self-hosted web component early -->
-  <link rel="modulepreload" href="./vendor/steel-toggle.ed3df6b1.min.js">
+  <link rel="modulepreload" href="./vendor/steel-toggle.77aaf6c9.min.js">
 
   <style>
     /* Self-hosted fonts */
@@ -113,6 +113,8 @@
       display: inline-flex; min-width: 44px; min-height: 44px;
       align-items: center; justify-content: center; color: var(--accent);
       transition: opacity 0.2s ease;
+      --steel-toggle-light: url(./vendor/toggle-light.png);
+      --steel-toggle-dark: url(./vendor/toggle-dark.png);
     }
     steel-toggle:not(:defined) { opacity: 0; }
 
@@ -234,7 +236,7 @@
   <div class="wrap">
     <div class="topbar">
       <span class="mark">vasu yadav</span>
-      <steel-toggle id="themeToggle" aria-label="Toggle dark mode"></steel-toggle>
+      <steel-toggle id="themeToggle" nowebgl="1" aria-label="Toggle dark mode"></steel-toggle>
     </div>
 
     <header class="hero">
@@ -253,7 +255,7 @@
       </p>
       <nav class="hero-links" aria-label="Primary links">
         <a class="hero-cta" href="mailto:kv.vasuyadav@gmail.com">Let’s work together</a>
-        <a href="/vasu-resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View resume, opens in a new tab">resume</a>
+        <a href="./vasu-resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View resume, opens in a new tab">resume</a>
         <a href="https://www.linkedin.com/in/kvvasuyadav/" target="_blank" rel="noopener noreferrer" aria-label="Vasu Yadav on LinkedIn, opens in a new tab">linkedin</a>
         <a href="https://github.com/kvvasu" target="_blank" rel="noopener noreferrer" aria-label="Vasu Yadav on GitHub, opens in a new tab">github</a>
       </nav>
@@ -382,7 +384,7 @@
     document.getElementById("copyright").textContent = `© ${new Date().getFullYear()} Vasu Yadav`;
   </script>
 
-  <script type="module" src="./vendor/steel-toggle.ed3df6b1.min.js"></script>
+  <script type="module" src="./vendor/steel-toggle.77aaf6c9.min.js"></script>
 
   <script type="module">
     const toggle = document.getElementById("themeToggle");
