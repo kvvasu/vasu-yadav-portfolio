@@ -4,56 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="description" content="Vasu Yadav, ServiceNow Developer at Accenture. ITSM workflows, Flow Designer, Service Portal, ATF.">
-<meta name="theme-color" content="#F3F5F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0A0F0C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
 <title>Vasu Yadav — ServiceNow Developer</title>
 <style>
   :root{
-    --bg:#F7F5F0;
-    --bg-alt:#ECE8DF;
-    --card:#FDFCFA;
-    --ink:#101418;
-    --ink-soft:#6A7078;
-    --line:#DDD8CC;
-    --accent:#0B7A47;
-    --accent-deep:#075232;
-    --accent-soft:#E4F3E7;
-    --muted-bg:#EBE8E1;
-    --muted-ink:#686E75;
+    /* Palette extracted from emilylai.com via skillui (emily-design) */
+    --bg:#FFFFFF;
+    --bg-alt:#F5F5F5;
+    --card:#F5F5F5;
+    --ink:#2A2A2A;
+    --ink-soft:#666666;
+    --line:#D9D9D9;
+    --accent:#FFDB68;
+    --accent-deep:#7A5C00;
+    --accent-soft:#FBEFCB;
+    --muted-bg:#F5F5F5;
+    --muted-ink:#666666;
     --radius:14px;
-    --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'Times New Roman', Times, serif;
+    --font-sans: 'Times New Roman', Times, serif;
     --font-mono: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
     color-scheme:light;
   }
+  /* Dark palette derived from emily-design tokens (luminance-inverted) */
   html[data-theme="dark"]{
-    --bg:#0C110F;
-    --bg-alt:#141A17;
-    --card:#171E1B;
-    --ink:#F3F0EA;
-    --ink-soft:#9BA69D;
-    --line:#232A26;
-    --accent:#4EE39A;
-    --accent-deep:#7FF0B5;
-    --accent-soft:#17281E;
-    --muted-bg:#1B221E;
-    --muted-ink:#94A096;
+    --bg:#161616;
+    --bg-alt:#1E1E1E;
+    --card:#202020;
+    --ink:#F5F5F5;
+    --ink-soft:#A6A6A6;
+    --line:#2A2A2A;
+    --accent:#FFDB68;
+    --accent-deep:#FFD75E;
+    --accent-soft:#2E2712;
+    --muted-bg:#1E1E1E;
+    --muted-ink:#A6A6A6;
     color-scheme:dark;
   }
   html{scroll-behavior:smooth;}
   body{transition:background .25s ease, color .2s ease;position:relative;}
   body{
     background:
-      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(11,122,71,0.06), transparent 60%),
-      radial-gradient(ellipse 700px 460px at 90% 6%, rgba(191,140,40,0.07), transparent 55%),
-      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(11,122,71,0.04), transparent 60%),
+      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(255,219,104,0.12), transparent 60%),
+      radial-gradient(ellipse 700px 460px at 90% 6%, rgba(217,217,217,0.35), transparent 55%),
+      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(255,219,104,0.08), transparent 60%),
       var(--bg);
   }
   html[data-theme="dark"] body{
     background:
-      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(78,227,154,0.14), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 92% 10%, rgba(78,227,154,0.06), transparent 55%),
-      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(78,227,154,0.05), transparent 60%),
+      radial-gradient(ellipse 800px 480px at 12% -8%, rgba(255,219,104,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 92% 10%, rgba(255,219,104,0.05), transparent 55%),
+      radial-gradient(ellipse 900px 500px at 50% 115%, rgba(255,219,104,0.04), transparent 60%),
       var(--bg);
   }
   .noise{
@@ -67,6 +69,7 @@
     background:var(--bg);
     color:var(--ink);
     font-family:var(--font-sans);
+    font-size:17px;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     overflow-x:hidden;
@@ -101,7 +104,11 @@
     font-size:18px;
     letter-spacing:-0.01em;
   }
-  .brand span{color:var(--accent);}
+  /* accent yellow on white is 1.4:1 — use its dark derivative for brand text (6.0:1) */
+  .brand span{color:var(--accent-deep);}
+  .header-actions{display:flex;align-items:center;gap:10px;}
+  #iconMoon{display:none;}
+  section.hero{border-top:none;padding-top:32px;}
   .header-cta{
     font-family:var(--font-mono);
     font-size:12px;
@@ -286,7 +293,7 @@
     margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;
     font-family:var(--font-mono);font-size:13px;
   }
-  .connect-row a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .15s ease, border-color .15s ease;}
+  .connect-row a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 4px;color:var(--ink);border-bottom:1px solid var(--line);transition:color .15s ease, border-color .15s ease;}
   .connect-row a:hover{color:var(--accent-deep);border-color:var(--accent-deep);}
   .connect-row span{color:var(--ink-soft);}
   .foot-bottom{
@@ -335,10 +342,10 @@
 <header>
   <div class="header-inner">
     <div class="brand">Vasu Yadav <span>·</span> <span>SNOW</span></div>
-    <div style="display:flex;align-items:center;gap:10px;">
+    <div class="header-actions">
       <button id="themeToggle" class="theme-toggle" aria-label="Toggle night mode" title="Toggle night mode" type="button">
         <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
-        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
       <a class="header-cta" href="mailto:waasukv@gmail.com">Get in touch</a>
     </div>
@@ -348,7 +355,7 @@
 <main class="wrap">
 
   <!-- HERO -->
-  <section class="hero" style="border-top:none;padding-top:32px;">
+  <section class="hero">
     <h1>Vasu Yadav</h1>
     <p class="role">ServiceNow Developer</p>
     <p class="lede">Building enterprise <span class="kw">ITSM</span> solutions with <span class="kw">Flow Designer</span>, <span class="kw">Business Rules</span>, <span class="kw">Employee Center</span>, <span class="kw">Service Portal</span>, and <span class="kw">ATF</span> — 2.5+ years on the platform.</p>
